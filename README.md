@@ -1,2 +1,2 @@
 # Onex-Assessment
-A full stack book applicationfor managing a personal book collection
+A full stack book application for managing a personal book collection
