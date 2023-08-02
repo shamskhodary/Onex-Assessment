@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src"
+    "dev": "cross-env NODE_ENV=development nodemon ./src",
+    "migrate": "cd ./src && npx sequelize-cli db:migrate",
+    "seed": "cd ./src && npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,8 @@
   },
   "homepage": "https://github.com/shamskhodary/Onex-Assessment#readme",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "npx -cli": "^6.6.1"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -31,6 +34,6 @@
     "jsonwebtoken": "^9.0.1",
     "pg": "^8.11.2",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.32.1"
+    "npx ": "^6.32.1"
   }
 }
