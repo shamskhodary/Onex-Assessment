@@ -28,23 +28,6 @@ const Book = sequelize.define("books", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: "users",
-      key: "id",
-    },
-    onDelete: "CASCADE",
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
 });
 
 export default Book;
