@@ -8,10 +8,8 @@ import searchBook from "../controllers/searchBook.js";
 
 const router = express.Router();
 
-//get all books where user_id = $1 (of a specific user)
 router.get("/", authenticated, allBooks);
 router.post("/", authenticated, createBook);
-//search a book *bonus*
 router.get("/search", authenticated, searchBook);
 router.put("/:id", authenticated, editBook);
 router.delete("/:id", authenticated, deleteBook);
