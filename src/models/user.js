@@ -23,13 +23,6 @@ const User = sequelize.define("users", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
 });
+
 export default User;

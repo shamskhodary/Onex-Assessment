@@ -1,16 +1,15 @@
-import User from "../models/user.js";
+import { User } from "../models/index.js";
 
-const checkUserByEmail = async (email) =>
+const checkUserByEmail = (email) =>
   User.findOne({
     where: { email },
   });
 
-const getUserById = async (id) => User.findOne({ where: { id } });
+const getUserById = (id) => User.findOne({ where: { id } });
 
-const signupQuery = async ({ firstName, lastName, email, password }) => {
-  return User.create({ firstName, lastName, email, password });
-};
+const signupQuery = ({ firstName, lastName, email, password }) =>
+  User.create({ firstName, lastName, email, password });
 
-const signinQuery = async (email) => User.findOne({ where: { email } });
+const signinQuery = (email) => User.findOne({ where: { email } });
 
 export { signupQuery, checkUserByEmail, signinQuery, getUserById };

@@ -1,9 +1,18 @@
 import express from "express";
 import authenticated from "../helpers/authenticated.js";
+import allBooks from "../controllers/allBooks.js";
+import createBook from "../controllers/createBook.js";
+import editBook from "../controllers/editBook.js";
+import deleteBook from "../controllers/deleteBook.js";
+
 const router = express.Router();
 
-router.get("/", authenticated, (req, res) => {
-  // console.log(req.user, "uuuuuu");
-  res.send("Books router is working!");
-});
+//get all books where user_id = $1 (of a specific user)
+router.get("/", authenticated, allBooks);
+router.post("/", authenticated, createBook);
+//search a book *bonus*
+router.post("/search", authenticated);
+router.put("/:id", authenticated, editBook);
+router.delete("/:id", authenticated, deleteBook);
+
 export default router;
