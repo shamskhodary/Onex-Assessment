@@ -5,11 +5,15 @@ const editBook = async (req, res, next) => {
     const { id } = req.params;
     const { title, author, description, imageUrl, pages } = req.body;
 
-    const data = await editBookQuery(
-      { title, author, description, imageUrl, pages },
-      id
-    );
-    console.log(data);
+    const [data, updated] = await editBookQuery({
+      title,
+      author,
+      description,
+      imageUrl,
+      pages,
+      id,
+    });
+    res.json({ message: "Book updated successfully", data: updated });
   } catch (error) {
     next(error);
   }

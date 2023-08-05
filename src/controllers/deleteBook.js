@@ -4,9 +4,9 @@ const deleteBook = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const deleted = await deleteBookQuery(id);
-    console.log(deleted);
-    res.json({ message: "" });
+    await deleteBookQuery(id);
+
+    res.json({ message: "Book deleted successfully" });
   } catch (error) {
     next(error);
   }
