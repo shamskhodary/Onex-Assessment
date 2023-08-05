@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { Book } from "../models/index.js";
 
 const allBooksQuery = (userId) =>
@@ -24,4 +25,25 @@ const editBookQuery = ({ title, author, description, imageUrl, pages, id }) =>
 
 const deleteBookQuery = (id) => Book.destroy({ where: { id } });
 
-export { allBooksQuery, createBookQuery, editBookQuery, deleteBookQuery };
+const searchBookQuery = (searchQuery) =>
+  Book.findAll({
+    where: {
+      [Op.or]: {
+        title: {
+          //% => to search for any matching result
+          [Op.iLike]: `%${searchQuery}%`,
+        },
+        author: {
+          [Op.iLike]: `%${searchQuery}%`,
+        },
+      },
+    },
+  });
+
+export {
+  allBooksQuery,
+  createBookQuery,
+  editBookQuery,
+  deleteBookQuery,
+  searchBookQuery,
+};
