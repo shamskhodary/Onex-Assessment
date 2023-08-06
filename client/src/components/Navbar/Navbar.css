@@ -1,0 +1,29 @@
+.v-toolbar__content {
+  background-color: #FBFCFF;
+  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.v-app-bar-title {
+  flex: none !important;
+}
+
+.title {
+  width: auto;
+  color: #0dd6b8;
+  font-size: 1.8rem !important;
+  font-weight: 800;
+}
+
+.user-info {
+  display: flex;
+}
+
+.search-input {
+  width: 40%;
+  display: flex;
+  align-self: flex-start;
+}
