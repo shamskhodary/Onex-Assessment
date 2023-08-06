@@ -10,7 +10,7 @@ const username = ref('shams');
 </script>
 
 <template>
-    <v-app-bar :elevation="11">
+    <v-app-bar :elevation="11" style="position: relative">
       <v-app-bar-title class="title">Booknex</v-app-bar-title>
       <div class="search-input">
     <v-text-field
