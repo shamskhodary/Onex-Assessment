@@ -1,12 +1,41 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
+import axios from 'axios';
+import Swal from 'sweetalert2'
 import SvgIcon from '@jamescoyle/vue-icon';
-import "./Navbar.css";
 import { mdiLogout } from '@mdi/js';
+import "./Navbar.css";
+
+
 
 const path = ref(mdiLogout);
-const username = ref('shams');
+const auth = inject('user');
+const username = ref('sss');
 
+
+username.value =`${auth.info.firstName} ${auth.info.lastName}`
+
+async function handleLogout () {
+  const {data, status} = await axios.post('/api/v1/auth/signout')
+  if(status === 200) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: data.message
+    })
+  }
+}
 </script>
 
 <template>
@@ -19,7 +48,7 @@ const username = ref('shams');
   </div>
   <div class="user-info">
     <p>{{ username }}</p>
-      <svg-icon type="mdi" :path="path"></svg-icon>
+      <svg-icon type="mdi" :path="path" @click="handleLogout"></svg-icon>
   </div>
      
     </v-app-bar>

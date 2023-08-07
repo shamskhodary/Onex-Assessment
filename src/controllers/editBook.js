@@ -5,8 +5,6 @@ const editBook = async (req, res, next) => {
     const { id } = req.params;
     const { title, author, description, imageUrl, pages } = req.body;
 
-    await validate({ title, author, description, imageUrl, pages });
-
     const [data, updated] = await editBookQuery({
       title,
       author,
