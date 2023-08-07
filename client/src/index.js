@@ -1,7 +1,19 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import HomeVue from './views/HomeVue.vue'
-import Signup from './components/Auth/Signup.vue'
-import Login from './components/Auth/Login.vue'
+import Signup from './components/Auth/SignupVue.vue'
+import Login from './components/Auth/LoginVue.vue'
+import axios from 'axios'
+
+async function userMe() {
+  try {
+    const { data } = await axios.get('/api/v1/auth')
+    console.log(data.user)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+userMe()
 
 const routes = [
   { path: '/', component: HomeVue },
@@ -10,7 +22,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(), //base url
+  history: createWebHistory(),
   routes
 })
 
