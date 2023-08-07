@@ -29,7 +29,11 @@ const signup = async (req, res, next) => {
         user: { ...newUser.dataValues, password: "*******" },
       });
   } catch (error) {
-    next(error);
+    if (error.name === "ValidationError") {
+      res.json({ status: "err", message: error.details[0].message });
+    } else {
+      res.json({ status: "err", message: error.message });
+    }
   }
 };
 

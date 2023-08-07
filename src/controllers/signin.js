@@ -22,7 +22,11 @@ const signin = async (req, res, next) => {
       .status(200)
       .json({ message: "You are logged in" });
   } catch (error) {
-    next(error);
+    if (error.name === "ValidationError") {
+      res.json({ status: "err", message: error.details[0].message });
+    } else {
+      res.json({ status: "err", message: error.message });
+    }
   }
 };
 
