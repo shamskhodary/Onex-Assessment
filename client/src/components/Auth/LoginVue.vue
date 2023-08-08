@@ -2,8 +2,9 @@
 import { ref } from 'vue'
 import './Auth.css'
 import axios from 'axios'
+import swal from '../../helpers/swal'
+
 import { useRouter } from 'vue-router'
-import Swal from 'sweetalert2'
 
 const email = ref('')
 const password = ref('')
@@ -21,39 +22,9 @@ async function handleLogin() {
   loading.value = false
 
   if (data.status === 'err') {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'error',
-      title: data.message
-    })
+    swal("error", data.message)
   } else {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: data.message
-    })
+    swal("success", data.message)
     loading.value = true
     router.push('/')
   }

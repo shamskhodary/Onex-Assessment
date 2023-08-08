@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import './Dashboard.css'
 import axios from 'axios'
 import './Dashboard.css'
-import swal from '../../constants/swal'
+import swal from '../../helpers/swal'
 
 const books = ref([])
 const show = ref(false)
