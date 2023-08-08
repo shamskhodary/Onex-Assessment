@@ -1,9 +1,10 @@
 <script setup>
 import { ref, inject } from 'vue'
 import axios from 'axios';
-import Swal from 'sweetalert2'
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiLogout } from '@mdi/js';
+import swal from '../../helpers/swal'
+
 import "./Navbar.css";
 
 
@@ -18,22 +19,7 @@ username.value =`${auth.info.firstName} ${auth.info.lastName}`
 async function handleLogout () {
   const {data, status} = await axios.post('/api/v1/auth/signout')
   if(status === 200) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'success',
-      title: data.message
-    })
+    swal("success", data.message)
   }
 }
 </script>
