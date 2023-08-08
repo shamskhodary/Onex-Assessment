@@ -2,21 +2,10 @@ import { createWebHistory, createRouter } from 'vue-router'
 import HomeVue from './views/HomeVue.vue'
 import Signup from './components/Auth/SignupVue.vue'
 import Login from './components/Auth/LoginVue.vue'
-import axios from 'axios'
-
-async function userMe() {
-  try {
-    const { data } = await axios.get('/api/v1/auth')
-    console.log(data.user)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-userMe()
+import { fetchUser } from './context/authContext'
 
 const routes = [
-  { path: '/', component: HomeVue },
+  { path: '/', component: HomeVue, meta: { isAuth: true } },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login }
 ]
@@ -24,6 +13,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isAuth && !fetchUser()) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

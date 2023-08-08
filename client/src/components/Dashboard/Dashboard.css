@@ -1,3 +1,43 @@
-/* .dash {
-  margin: 4rem;
-} */
+.bg-primary {
+  background-color: rgb(13, 214, 184) !important;
+}
+
+.dash {
+  margin: 2rem 1rem;
+}
+
+.all-cards {
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.v-img__img--cover {
+  object-position: top;
+}
+
+.v-slide-group__content {
+  justify-content: space-between;
+}
+
+.v-btn.add-btn {
+  height: auto;
+  background-color: rgb(13, 214, 184);
+  color: #fff;
+  font-weight: 600;
+}
+
+.v-btn.v-btn--density-default {
+  font-weight: 600;
+}
+
+.v-overlay__content {
+  width: 30% !important;
+}
+
+.v-form {
+  padding: 2rem;
+}
