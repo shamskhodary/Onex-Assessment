@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="dash" v-if="books.length">
+  <div class="dash">
     <v-card>
       <v-tabs v-if="books.length">
         <v-tab>My Book List</v-tab>
