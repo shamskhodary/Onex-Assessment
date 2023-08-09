@@ -10,7 +10,6 @@ const props = defineProps({
   books: Array
 })
 
-const popup = ref(false)
 const pencil = ref(mdiPencil)
 const deleteIcon = ref(mdiDelete)
 
@@ -37,7 +36,7 @@ async function handleDeleteBook(id){
             <svg-icon type="mdi" :path="deleteIcon" style="cursor: pointer;" @click="handleDeleteBook(book.id)"></svg-icon>
           </div>
         </v-card-title>
-        <EditBook :popup="popup" :book="book"/>
+        <EditBook :book="book"/>
         <v-card-subtitle>
           {{ book.author }}
         </v-card-subtitle>
