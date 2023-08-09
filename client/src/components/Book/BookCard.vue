@@ -10,17 +10,11 @@ const props = defineProps({
   books: Array
 })
 
-const show = ref(false)
 const popup = ref(false)
 const pencil = ref(mdiPencil)
 const deleteIcon = ref(mdiDelete)
 
-async function handleEditBook(id){
-  popup.value = true
-  console.log(id)
 
-  // const {data} = await axios.put('/api/v1/book/:id')
-}
 
 async function handleDeleteBook(id){
   const {data, status} = await axios.delete(`/api/v1/books/${id}`)
@@ -32,18 +26,18 @@ async function handleDeleteBook(id){
 
 <template>
   <div class="all-cards">
-    <div v-for="book in books" :key="book.id">
+    <div v-for="book in books" :key="book.id" >
       <v-card class="mx-auto" width="270">
         <v-img :src="book.imageUrl" height="200px" cover></v-img>
 
         <v-card-title style="display: flex; justify-content: space-between; align-items: center">
           {{ book.title }}
           <div style="display: flex; gap: 1rem;">
-            <svg-icon type="mdi" :path="pencil" style="cursor: pointer;" @click="popup = true"></svg-icon>
+            <svg-icon type="mdi" :path="pencil" style="cursor: pointer;" @click="book.popup = true"></svg-icon>
             <svg-icon type="mdi" :path="deleteIcon" style="cursor: pointer;" @click="handleDeleteBook(book.id)"></svg-icon>
           </div>
         </v-card-title>
-        <EditBook :popup="popup" :handleEditBook="() =>handleEditBook(book.id)"/>
+        <EditBook :popup="popup" :book="book"/>
         <v-card-subtitle>
           {{ book.author }}
         </v-card-subtitle>
@@ -51,12 +45,12 @@ async function handleDeleteBook(id){
         <v-card-subtitle>pages: {{ book.pages }}</v-card-subtitle>
 
         <v-card-actions>
-          <v-btn color="#0dd6b8" variant="text" @click="show = !show"> Expand </v-btn>
+          <v-btn color="#0dd6b8" variant="text" @click="book.expanded = !book.expanded"> Expand </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
 
         <v-expand-transition>
-          <div v-show="show">
+          <div v-if="book.expanded">
             <v-divider></v-divider>
 
             <v-card-text>

@@ -10,8 +10,9 @@ const books = ref([])
 
 async function allBooks() {
   try {
-    const { data } = await axios.get('/api/v1/books')
-    books.value = data
+    const { data } = await axios.get('/api/v1/books');
+   const allInfo = data.map((x) => ({...x, expanded: false, popup: false}))
+    books.value = allInfo
   } catch (error) {
     books.value = []
   }
@@ -19,12 +20,13 @@ async function allBooks() {
 onMounted(() => {
   allBooks()
 })
+
 </script>
 
 <template>
-  <div class="dash">
+  <div class="dash" v-if="books.length">
     <v-card>
-      <v-tabs>
+      <v-tabs v-if="books.length">
         <v-tab>My Book List</v-tab>
         <v-btn class="add-btn">Add book </v-btn>
         <BookForm />
