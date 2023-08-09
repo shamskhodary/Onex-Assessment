@@ -18,7 +18,11 @@ const createBook = async (req, res, next) => {
     });
     res.json({ message: "Book created successfully", data });
   } catch (error) {
-    next(error);
+    if (error.name === "ValidationError") {
+      res.json({ status: "err", message: error.details[0].message });
+    } else {
+      res.json({ status: "err", message: error.message });
+    }
   }
 };
 
