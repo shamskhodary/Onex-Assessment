@@ -17,10 +17,7 @@ const signin = async (req, res, next) => {
 
     const token = await generateToken({ id: user.id, email: user.email });
 
-    res
-      .cookie("token", token)
-      .status(200)
-      .json({ message: "You are logged in" });
+    res.status(200).json({ message: "You are logged in", token });
   } catch (error) {
     if (error.name === "ValidationError") {
       res.json({ status: "err", message: error.details[0].message });

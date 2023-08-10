@@ -1,21 +1,13 @@
-import verifyToken from "../helpers/verifyToken.js";
 import { getUserById } from "../queries/auth.js";
-//users/me
+//api/v1/auth
 const checkAuth = async (req, res) => {
-  const { token } = req.cookies;
+  const myId = req.user.id;
+  const  data  = await getUserById(myId);
 
-  try {
-    if (token) {
-      const payload = await verifyToken(token);
-      const { id } = payload;
+  if(data){
+    data.password=  ""
+    res.json({ user: data });
 
-      const { firstName, lastName, email } = await getUserById(id);
-      res.json({ user: { id, firstName, lastName, email } });
-    } else {
-      res.json({ user: null });
-    }
-  } catch (error) {
-    next(error);
   }
 };
 

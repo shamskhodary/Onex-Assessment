@@ -4,6 +4,7 @@ import axios from 'axios';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiLogout } from '@mdi/js';
 import swal from '../../helpers/swal'
+import { useRouter } from 'vue-router';
 
 import "./Navbar.css";
 
@@ -12,14 +13,16 @@ import "./Navbar.css";
 const path = ref(mdiLogout);
 const auth = inject('user');
 const username = ref('sss');
+const router = useRouter()
 
-
-username.value =`${auth.info.firstName} ${auth.info.lastName}`
+console.log(auth.info)
+username.value =`${auth.info?.firstName} ${auth.info?.lastName}`
 
 async function handleLogout () {
   const {data, status} = await axios.post('/api/v1/auth/signout')
   if(status === 200) {
     swal("success", data.message)
+    router.push('/login')
   }
 }
 </script>
