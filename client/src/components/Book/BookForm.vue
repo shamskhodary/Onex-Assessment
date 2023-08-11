@@ -10,6 +10,9 @@ const description = ref('')
 const imageUrl = ref('')
 const pages = ref(0)
 
+const emit = defineEmits(['books-changed'])
+
+
 async function handleAddBook() {
   popup.value = false
   const bookInfo = {
@@ -26,6 +29,7 @@ async function handleAddBook() {
     swal('error', data.message)
   } else {
     swal('success', data.message)
+    emit('books-changed')
   }
 }
 

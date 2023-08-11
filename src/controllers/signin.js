@@ -17,7 +17,7 @@ const signin = async (req, res, next) => {
 
     const token = await generateToken({ id: user.id, email: user.email });
 
-    res.status(200).json({ message: "You are logged in", token });
+    res.status(200).json({ message: "You are logged in", token, user });
   } catch (error) {
     if (error.name === "ValidationError") {
       res.json({ status: "err", message: error.details[0].message });

@@ -4,7 +4,7 @@ import Signup from './components/Auth/SignupVue.vue'
 import Login from './components/Auth/LoginVue.vue'
 
 const routes = [
-  { path: '/', component: HomeVue, meta: { isAuth: true } },
+  { path: '/', component: HomeVue },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login }
 ]
@@ -14,4 +14,15 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/signup']
+  const auth = !publicPages.includes(to.path)
+  const loggedIn = localStorage.getItem('token')
+
+  if (auth && !loggedIn) {
+    return next('/login')
+  }
+
+  next()
+})
 export default router
