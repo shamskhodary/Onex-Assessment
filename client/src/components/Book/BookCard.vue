@@ -12,13 +12,14 @@ const props = defineProps({
 
 const pencil = ref(mdiPencil)
 const deleteIcon = ref(mdiDelete)
-
+const emit = defineEmits(['book-deleted'])
 
 
 async function handleDeleteBook(id){
   const {data, status} = await axios.delete(`/api/v1/books/${id}`)
   if(status === 200){
     swal("success", data.message)
+    emit('book-deleted')
   }
 }
 </script>

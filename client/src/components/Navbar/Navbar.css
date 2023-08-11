@@ -20,8 +20,12 @@
 
 .user-info {
   display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-
+.user-info p {
+  font-size: 1.2rem;
+}
 .search-input {
   width: 40%;
   display: flex;

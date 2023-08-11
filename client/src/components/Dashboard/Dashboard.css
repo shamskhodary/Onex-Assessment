@@ -41,3 +41,13 @@
 .v-form {
   padding: 2rem;
 }
+
+.not-found{
+  margin-top: 5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.not-found img {
+  width: 5rem;
+}

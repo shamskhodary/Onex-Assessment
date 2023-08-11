@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import './Auth.css'
 import axios from 'axios'
-import swal from '../../helpers/swal'
-
 import { useRouter } from 'vue-router'
+import swal from '../../helpers/swal'
+import { setHeaders } from '../../api'
 
 const email = ref('')
 const password = ref('')
@@ -19,13 +19,18 @@ async function handleLogin() {
 
   loading.value = true
   const { data } = await axios.post('/api/v1/auth/signin', userData)
+
   loading.value = false
 
   if (data.status === 'err') {
-    swal("error", data.message)
+    swal('error', data.message)
   } else {
-    swal("success", data.message)
+
+    swal('success', data.message)
     loading.value = true
+    localStorage.setItem('token', data.token)
+    localStorage.setItem("user", JSON.stringify(data.user));
+    setHeaders()
     router.push('/')
   }
 }

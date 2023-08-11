@@ -1,26 +1,24 @@
 <script setup>
-import { ref, inject } from 'vue'
-import axios from 'axios';
+import { ref } from 'vue'
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiLogout } from '@mdi/js';
 import swal from '../../helpers/swal'
+import { useRouter } from 'vue-router';
 
 import "./Navbar.css";
 
-
-
 const path = ref(mdiLogout);
-const auth = inject('user');
-const username = ref('sss');
+const username = ref("");
+const router = useRouter()
 
+const user = JSON.parse(localStorage.getItem("user"))
+username.value = `${user.firstName} ${user.lastName}`
 
-username.value =`${auth.info.firstName} ${auth.info.lastName}`
 
 async function handleLogout () {
-  const {data, status} = await axios.post('/api/v1/auth/signout')
-  if(status === 200) {
-    swal("success", data.message)
-  }
+  localStorage.removeItem("token")
+  swal("success", "You are logged out")
+  router.push('/login')
 }
 </script>
 
@@ -34,7 +32,7 @@ async function handleLogout () {
   </div>
   <div class="user-info">
     <p>{{ username }}</p>
-      <svg-icon type="mdi" :path="path" @click="handleLogout"></svg-icon>
+      <svg-icon type="mdi" :path="path" @click="handleLogout" style="cursor: pointer;" ></svg-icon>
   </div>
      
     </v-app-bar>

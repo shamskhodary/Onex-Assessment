@@ -5,6 +5,7 @@ import axios from 'axios'
 import swal from '../../helpers/swal'
 
 import { useRouter } from 'vue-router'
+import { setHeaders } from '../../api'
 
 const firstName = ref('')
 const lastName = ref('')
@@ -35,6 +36,9 @@ async function handleSignup() {
    swal("error", data.message)
   } else {
    swal("success", data.message)
+    localStorage.setItem('token', data.token)
+    localStorage.setItem("user", JSON.stringify(data.user));
+    setHeaders()
     loading.value = true
     router.push('/')
   }
