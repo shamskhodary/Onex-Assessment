@@ -6,7 +6,7 @@ import authenticated from "../helpers/authenticated.js";
 
 const router = express.Router();
 
-router.get("/", authenticated, checkAuth);
+// router.get("/", authenticated, checkAuth);
 router.post("/signup", signup);
 router.post("/signin", signin);
 

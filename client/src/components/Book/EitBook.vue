@@ -7,9 +7,9 @@ const props = defineProps({
   book: Object,
 })
 
-
 // eslint-disable-next-line vue/no-setup-props-destructure
 const newBook = ref(props.book)
+const emit = defineEmits(["book-edited"])
 
 const handleEditBook = async () => {
 
@@ -17,6 +17,7 @@ const handleEditBook = async () => {
   if(status === 200){
     swal("success", data.message)
     props.book.popup= false
+    emit('book-edited')
   }
 }
 

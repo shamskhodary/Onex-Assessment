@@ -6,26 +6,17 @@ import './Dashboard.css'
 import BookForm from '../Book/BookForm.vue'
 import BookCard from '../Book/BookCard.vue'
 
-const books = ref([])
-
-async function allBooks() {
-  try {
-    const { data } = await axios.get('/api/v1/books')
-
-    const allInfo = data.map((x) => ({ ...x, expanded: false, popup: false }))
-    books.value = allInfo
-
-  } catch (error) {
-    books.value = []
-  }
-}
+const props = defineProps({
+  allBooks: Function,
+  books: Array
+})
 
 async function onBooksChanged() {
-  await allBooks()
+  await props.allBooks()
 }
 
 onMounted(() => {
-  allBooks()
+  props.allBooks()
 })
 </script>
 
@@ -39,7 +30,7 @@ onMounted(() => {
       </v-tabs>
     </v-card>
     <div v-if="books.length">
-      <BookCard :books="books"  @book-deleted="onBooksChanged"/>
+      <BookCard :books="books"  @book-deleted="onBooksChanged" @book-edited="onBooksChanged"/>
     </div>
     <div v-else class="not-found">
       <p>No books found</p>
