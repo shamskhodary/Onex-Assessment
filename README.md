@@ -1,6 +1,6 @@
 # Booknex
 
-A full stack book application for managing a personal book collection. It enables the user to add, edit and delete books, he is also able to view his book collections in the book list tab. In addition to that, he can search for any book he wants.
+A full stack book application for managing a personal book collection. It enables the user to add, edit ,and delete books, he is also able to view his book collections in the book list tab. In addition to that, he can search for any book he wants.
 
 ## Database Schema
 
@@ -21,7 +21,7 @@ A full stack book application for managing a personal book collection. It enable
 - Make sure you have installed PostgreSQL and pgcli, then in the `psql` or  `pgcli` terminal
  ```sh
   CREATE DATABASE {database name};
-  CREATE USER {user name} WITH superuser password {password}
+  CREATE USER {user name} WITH superuser password {password};
   ALTER DATABASE {database name} OWNER TO {user name};
   ```
 -  Build your database 
