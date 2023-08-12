@@ -8,7 +8,7 @@ const title = ref('')
 const author = ref('')
 const description = ref('')
 const imageUrl = ref('')
-const pages = ref(0)
+const pages = ref()
 
 const emit = defineEmits(['books-changed'])
 
@@ -30,6 +30,12 @@ async function handleAddBook() {
   } else {
     swal('success', data.message)
     emit('books-changed')
+
+    title.value = "",
+    author.value = "",
+    description.value ="",
+    imageUrl.value ="",
+    pages.value =""
   }
 }
 
