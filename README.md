@@ -24,10 +24,7 @@ A full stack book application for managing a personal book collection. It enable
   CREATE USER {user name} WITH superuser password {password};
   ALTER DATABASE {database name} OWNER TO {user name};
   ```
--  Build your database 
-```sh
-npm run build:db
-```
+
 - Create .env file and add your environment variables : 
 ```sh
     # database urls
@@ -35,6 +32,11 @@ npm run build:db
     # secret for jwt
     SECRET_KEY=your secret key
 ```
+-  Build your database 
+```sh
+npm run build:db
+```
+
 - To run the server side, you can run `npm run dev` command and to run the client side `cd client & npm run dev`.
 
 ## Technologies
