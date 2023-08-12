@@ -45,7 +45,9 @@ async function handleLogout() {
 
 <template>
     <v-app-bar :elevation="11" style="position: relative">
-    <v-app-bar-title class="title">Booknex</v-app-bar-title>
+      <router-link to="/">
+        <v-app-bar-title class="title">Booknex</v-app-bar-title>
+      </router-link>
     <div class="search-input">
       <v-text-field label="search" v-model="searchQuery" @input="allBooks"></v-text-field>
     </div>
