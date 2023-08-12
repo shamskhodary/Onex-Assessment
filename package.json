@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./src",
     "migrate": "cd ./src && npx sequelize-cli db:migrate",
-    "seed": "cd ./src && npx sequelize-cli db:seed:all"
+    "seed": "cd ./src && npx sequelize-cli db:seed:all",
+    "build:db": "cross-env BUILD=true NODE_ENV=development node ./src"
   },
   "repository": {
     "type": "git",

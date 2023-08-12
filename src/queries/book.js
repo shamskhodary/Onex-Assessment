@@ -6,6 +6,7 @@ const allBooksQuery = (userId) =>
     where: {
       userId,
     },
+    order: [["title", "DESC"]],
   });
 
 const createBookQuery = ({
@@ -25,7 +26,7 @@ const editBookQuery = ({ title, author, description, imageUrl, pages, id }) =>
 
 const deleteBookQuery = (id) => Book.destroy({ where: { id } });
 
-const searchBookQuery = (searchQuery) =>
+const searchBookQuery = (searchQuery, userId) =>
   Book.findAll({
     where: {
       [Op.or]: {
@@ -37,6 +38,7 @@ const searchBookQuery = (searchQuery) =>
           [Op.iLike]: `%${searchQuery}%`,
         },
       },
+      userId,
     },
   });
 

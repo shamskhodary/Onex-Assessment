@@ -5,8 +5,30 @@ import Login from './components/Auth/LoginVue.vue'
 
 const routes = [
   { path: '/', component: HomeVue },
-  { path: '/signup', component: Signup },
-  { path: '/login', component: Login }
+  {
+    path: '/signup',
+    component: Signup,
+    beforeEnter: (to, from, next) => {
+      const registered = localStorage.getItem('token')
+      if (registered) {
+        next('/')
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/login',
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      const loggedIn = localStorage.getItem('token')
+      if (loggedIn) {
+        next('/')
+      } else {
+        next()
+      }
+    }
+  }
 ]
 
 const router = createRouter({

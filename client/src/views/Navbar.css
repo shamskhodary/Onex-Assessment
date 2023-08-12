@@ -16,6 +16,12 @@
   color: #0dd6b8;
   font-size: 1.8rem !important;
   font-weight: 800;
+
+}
+
+a {
+  outline: 0;
+  text-decoration: none;
 }
 
 .user-info {
@@ -23,9 +29,11 @@
   align-items: center;
   gap: 1rem;
 }
+
 .user-info p {
   font-size: 1.2rem;
 }
+
 .search-input {
   width: 40%;
   display: flex;
